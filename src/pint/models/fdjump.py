@@ -73,6 +73,20 @@ class FDJump(DelayComponent):
                 description="Whether to use log-frequency (Y) or linear-frequency (N) for computing FDJUMPs.",
             )
         )
+
+        self.add_param(
+            boolParameter(
+                name="FDJUMP_SCALE",
+                value="LOG",
+                description="Whether to use log-frequency (Log) or linear-frequency (Linear) for computing FDJUMPs.",
+            )
+        )
+
+        if self.FDJUMPLOG.value=="Log" and self.FDJUMPLOG.value==False:
+            self.FDJUMPLOG.value = True
+        elif self.FDJUMPLOG.value=="Linear" and self.FDJUMPLOG.value==True:
+            self.FDJUMPLOG.value = False
+            
         for j in range(1, fdjump_max_index + 1):
             self.add_param(
                 maskParameter(
